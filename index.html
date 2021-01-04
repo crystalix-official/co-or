@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<script src="js/jquery.min.js"></script>
+
+    <script>
+    function set_validator_errors(){
+        orderValidator.errorTitle = 'Por favor corrige los siguientes errores'; 
+
+        orderValidator.errorNameField = 'Listo'; 
+        orderValidator.errorNameMess = 'Introduzca su nombre'; 
+        
+        orderValidator.errorPhoneField = 'Nombre'; 
+        orderValidator.errorPhoneMess = 'Ingrese el número de teléfono correcto'; 
+        
+        orderValidator.errorAddress = 'Ingrese la dirección correcta'; 
+        orderValidator.errorRequired = 'campo requerido'; 
+        orderValidator.errorMaxLength = 'carácter máximo válido {1}'; 
+        orderValidator.errorMinLength = 'carácter mínimo válido {1}'; 
+        orderValidator.errorEmailField = 'E-mail';
+        orderValidator.errorEmail = 'Correo electrónico no válido especificado';
+        }
+    </script>
+    
+<script>
+
+
+window.app = {
+    timestamp: parseInt((new Date()).getTime() / 1000),
+    jq: jQuery,
+    formAction: window.location.href,
+    leadToken: '5ff36a74154f36.78045101',
+    offers: {"18960":{"price":"129000","id":18960,"prepaid_info_html":"","delivery_price":"","currency":{"code":"COP","name":"COP"},"link":"","price2":"268000","product_sku":"","country":{"code":"CO","name":"\u041a\u043e\u043b\u0443\u043c\u0431\u0438\u044f"},"discount":"50"}},
+    currentOffer: {"price":"129000","id":18960,"prepaid_info_html":"","delivery_price":"","currency":{"code":"COP","name":"COP"},"link":"","price2":"268000","product_sku":"","country":{"code":"CO","name":"\u041a\u043e\u043b\u0443\u043c\u0431\u0438\u044f"},"discount":"50"},
+    allowedCountries: ["CO"],
+    _setOfferId: false,
+    
+    setOffer: function (offerId) {
+        if (offerId == this._setOfferId) {
+            return ;
+        }
+        this._setOfferId = offerId;
+        if (offerId) {
+            var offer = app.offers[offerId];
+            var previousOffer = app.currentOffer;
+            app.currentOffer = offer;
+            var event = this.jq.Event("offerchange");
+            event.previousOffer = previousOffer;
+            event.currentOffer = app.currentOffer;
+            this.jq(document).trigger(event);
+            this.updatePage(offer);
+        } else {
+            $('input[name=country]').val('');
+        }
+    },
+    
+    updatePage: function(offer) {
+        $('x-newprice').html(offer.price);
+        $('x-oldprice').html(offer.price2);
+        $('x-currency').html(offer.currency.name);
+        $('input[name=offer], select[name=offer]').val(offer.id);
+        $('input[name=country]').val(offer.country.code);
+    },
+
+    blockForm: function() {
+        // Блокируем кнопки при отправке формы
+        $('input[type=submit]', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        $('button', $(this)).prop( 'disabled', true ).attr( 'disabled', true );
+        app.incompleteOrder.lock = true;
+        clearTimeout(app.incompleteOrder.timer);
+    },
+
+    unblockForm: function() {
+        $('input[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        $('button[type=submit]', $(this)).prop( 'disabled', false ).attr( 'disabled', false );
+        app.incompleteOrder.lock = false;
+        clearTimeout(app.incompleteOrder.timer);
+    }
+
+};
+
+
+</script><script src="js/form.validate.js"></script>
+<script src="js/form.incomplete.js"></script>
+<script src="js/main2.js"></script>
+
+
+
+  <meta content="text/html;charset=utf-8" http-equiv="content-type">
+  <meta charset="utf-8">
+  <meta content="telephone=no" name="format-detection">
+  <title>Crystalix</title>
+  <!-- Favicon -->
+  <link href="images/prod.png" rel="shortcut icon" type="image/png">
+  <link href="css/css.css" rel="stylesheet">
+  <link href="css/css_1.css" rel="stylesheet">
+  <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+  <meta content="width=device-width, initial-scale=1, user-scalable=no" name="viewport">
+  <!--Import Google Icon Font-->
+  <link href="css/icon.css" rel="stylesheet">
+  <!-- CSS -->
+  <link href="css/materialize.min.css" rel="stylesheet" type="text/css">
+  <link href="css/animate.css" rel="stylesheet" type="text/css">
+  <link href="css/lightslider.css" rel="stylesheet" type="text/css">
+  <link href="css/style.css" rel="stylesheet" type="text/css">
+  <script src="js/jquery.min_1.js"></script>
+</head>
+
+<body>
+  <div class="preloader-background">
+    <div class="preloader-container big active">
+      <div class="spinner-layer spinner-blue-only">
+        <div class="circle-clipper left">
+          <div class="circle"></div>
+        </div>
+        <div class="gap-patch">
+          <div class="circle"></div>
+        </div>
+        <div class="circle-clipper right">
+          <div class="circle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <main>
+    <div class="js__countryblock" data-country="sng">
+      <section class="block-01">
+        <div class="container">
+          <div class="row">
+            <div class="col xl6 l5 m12 s12">
+              <div class="block-01__subtitle ttu">
+                ES HORA	
+              </div>
+              <div class="block-01__title ttu">
+                RESTAURAR SUS VISTAS!
+              </div>
+            </div>
+            <div class="col xl6 l7 m12 s12">
+              <div class="block-01__dashes dflex">
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.5s">
+                  <div class="dashes-item__text fwb ttu">
+                    SIN RECETAS DE MÉDICO
+                    <span>PARA USO EN CASA</span>
+                  </div>
+                </div>
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.6s">
+                  <div class="dashes-item__text fwb ttu">
+                    100%
+                    <span>NATURAL MATERIALS</span>
+                  </div>
+                </div>
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.7s">
+                  <div class="dashes-item__text fwb ttu">
+                    RECOMENDAR <span>POR EL CENTRO
+                        CUIDADO DE  <br>LOS OJOS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col xl4 l4 m12 s12">
+              <div class="img_box block-01__prod-image wow zoomIn" data-wow-delay="1.5s">
+                <img alt="" src="images/prod.png">
+              </div>
+            </div>
+            <div class="col xl4 l4 m6 s12">
+              <div class="block-01__prod-plus">
+                <div class="prod-pluses__title fwb">
+                    Relieves tensión y dolor 
+                </div>
+                <div class="prod-pluses__text">
+                    en los ojos en 5 minutos
+                </div>
+              </div>
+              <div class="block-01__prod-plus">
+                <div class="prod-pluses__title fwb">
+                    Restore 40% de la visión
+                </div>
+                <div class="prod-pluses__text">
+                    en la primera serie de tratamientos
+                </div>
+              </div>
+              <div class="block-01__prod-plus">
+                <div class="prod-pluses__title fwb">
+                    Prevenir el desarrollo de
+                </div>
+                <div class="prod-pluses__text">
+                    enfermedades oculares y debilitamiento de la visión
+                </div>
+              </div>
+              <div class="center-align block-01__prod-price wow fadeInRight" data-wow-delay="1.9s">
+                <div class="prod-price__old">
+                  <x-oldprice>268000</x-oldprice> <x-currency>COP</x-currency>                </div>
+                <div class="prod-price__new">
+                  <x-newprice>129000</x-newprice> <x-currency>COP</x-currency>                </div>
+              </div>
+            </div>
+            <div class="col xl4 l4 m6 s12">
+              <div class="percent-box ttu">
+                <div class="percent-box__title">
+                    SI HACE EL PEDIDO AHORA 
+                    HAY UN DESCUENTO 
+                </div>
+                <div class="percent-box__percent">
+                    EXTRAORDINARIO DEL 50%
+                </div>
+              </div>
+              <div class="form-box wow fadeInUp" data-wow-delay="1.8s">
+                <form action="https://healthbestblog.space/cpatl/api.php" class="main_form" id="order_form" method="POST">
+                  <div class="input-field input_item">
+                    <!-- не переводим -->
+                    <i class="material-icons prefix">account_circle</i>
+                    
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="CO" selected="selected" value="18960">
+            Колумбия        </option>
+    </select>
+
+                        <div class="input-group tooltip-hide">
+                      <input id="icon_prefix" name="name" placeholder="" required type="text">
+                    </div>
+                    <label for="icon_prefix">Introduzca el nombre</label>
+                  </div>
+                  <div class="input-field input_item">
+                    <!-- не переводим -->
+                    <i class="material-icons prefix">phone</i>
+                    <!-- не переводим -->
+                    <div class="input-group tooltip-hide">
+                      <input id="icon_telephone" name="phone" placeholder="" required type="tel">
+                    </div>
+                    <label for="icon_telephone">Introduzca el numero</label>
+                  </div>
+                  <div class="center-align">
+                    <button class="js_submit button__text waves-effect waves-light btn blue custom_btn" type="submit">
+                      Order
+                    </button>
+                  </div>
+                       <input type="hidden" name="stream_hid" value="RnwTgbMx">
+      <input type="hidden" name="offer_id" value="4069">
+
+      
+      <input type="hidden" name="country" value="CO"> 
+
+      <input type="hidden" name="sid1" value="alex">
+      <input type="hidden" name="sid2" value="alex2">
+      <input type="hidden" name="sid3" value="alex3">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="block-3">
+        <div class="container">
+          <div class="row">
+            <div class="col xl6 l6 m12 s12">
+              <div class="b3-left">
+                <img alt="Alt" src="images/b3-image.png">
+              </div>
+            </div>
+            <div class="col xl6 l6 m12 s12">
+              <div class="b3-right">
+                <h2>
+<span class="str-1"> ¡LAS PRINCIPALES CAUSAS </span>
+<span class="str-2"> DE LAS MALAS VISTAS ES UNA FUNCIÓN DE </span>
+<span class="str-3">OJOS MUSCULAR!</span>
+</h2>
+                <ul>
+                  <li>
+                    <span> El sistema muscular enfoca </span> el ojo para que las sombras que pasan a través de la lente del ojo se proyecten sobre la retina.
+                  </li>
+                  <li>
+                    <span> Los trastornos </span> de los músculos oculares producen menos o una presión excesiva sobre el globo ocular.
+                  </li>
+                  <li>
+                    <span> La lente se deforma </span> o daña y el enfoque se distorsiona, por lo que ya no puedes ver claramente.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+      <div class="block-5">
+        <div class="container">
+          <div class="row">
+            <div class="col xl5 l6 m12 s12">
+              <div class="b5-left wow zoomIn">
+                <img alt="Alt" src="images/prod.png">
+              </div>
+            </div>
+            <div class="col xl7 l6 m12 s12">
+              <div class="b5-right">
+                <h2>
+<span class="str-1"> Crystalix </span><br>
+<span class="str-2"> ES UN PRODUCTO INNOVADOR  </span>
+<span class="str-3"> RESTAURANTE VISTAS </span>
+</h2>
+                <p>
+                  <span>Crystalix</span> - es un nutriente complejo de un extracto natural que tiene un efecto curativo en el caso de una visión reducida y elimina por completo las enfermedades más comunes del ojo humano.
+                </p>
+                <ul class="block-5_list">
+                  <li><b>Lutein</b> - protege la retina de diversas influencias externas </li>
+                  <li><b>Zeaxanthin</b> - las ayudas mantienen los músculos del ojo sanos y reducen cansancio</li>
+                  <!--<li><b>Vitamin</b> - meningkatkan kejernihan mata</li>-->
+                  <li><b>Vaccinium myristillus fructus</b> - fortalece los capilares oculares y los vasos sanguíneos oculares</li>
+                </ul>
+                <p>
+                  Crystalix es el único producto que regula la función de los músculos del globo ocular, ayuda a restaurar el enfoque y recupera una visión clara, brillante y tridimensional.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="block-7">
+        <div class="container">
+          <div class="row">
+            <div class="col xl12 l12 m12 s12">
+              <h2> Cuando se necesita un <span> Crystalix? </span></h2>
+              <div class="b7-top">
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-1.png">
+                  <p>
+                    Vista <span> pobre </span> y débil
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-2.png">
+                  <p>
+                    Diversas <span> enfermedades y patología </span> de los órganos
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-3.png">
+                  <p>
+                    A menudo <span> se siente ardor, picazón </span> y enrojecimiento de los
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-4.png">
+                  <p>
+                    Si usa <span> anteojos o lentes de contacto </span>
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-5.png">
+                  <p>
+                    Si <span> siente un dolor </span> de cabeza que mucha gente piensa como una migraña o presión arterial alta
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-6.png">
+                  <p>
+                    Los ojos <span> se cansan rápidamente </span> y el rendimiento generalmente
+                  </p>
+                </div>
+                <div class="factor wow rollIn">
+                  <img alt="Alt" src="images/factor-7.png">
+                  <p>
+                    Si usted tiene <span> una predisposición genética, </span> su familia sufre de problemas de 
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+   
+      <div class="block-9">
+        <div class="container">
+          <div class="row">
+            <br>
+            <center>
+              <h2>
+	Sertifikat
+
+</h2>
+              <br>
+              <img alt="Alt" src="images/doctor.png" height="500px" width="350px">
+            </center>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="block-11">
+        <div class="container">
+          <div class="row valign-wrapper">
+            <div class="col xl8 offset-xl1 l7 m8 s12">
+              <div class="b11-left">
+                <div class="alert">
+                  <h3>
+                    ¡CUIDADOSAMENTE LOS BIENES DE IMITACIÓN! <span> Crystalix! </span>
+</h3>
+                  <p>
+                    Para evitar productos falsificados y productos <span> de imitación de calidad fea comprar productos
+                      originales sólo en este sitio web solamente. </span>
+                  </p>
+                </div>
+                <p class="quality">
+                  GARANTÍA DE CALIDAD 100%
+                </p>
+              </div>
+            </div>
+            <div class="col xl3 l5 m4 s12">
+              <div class="b11-right">
+                <img alt="" src="images/prod.png">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="block-12">
+        <div class="container">
+          <div class="row">
+            <div class="col xl10 offset-xl1 l12 s12">
+              <h2>
+                ¿LISTO PARA ORDENAR Crystalix?
+                            </h2>
+              <div class="stages">
+                <div class="stage wow fadeInLeft">
+                  <img alt="Alt" src="images/stage-1.png">
+                  <p>
+                    CONTENIDO PEDIDO FORMULARIO ABAJO
+                  </p>
+                  <img alt="" class="arrow" src="images/arrow.png">
+                </div>
+                <div class="stage wow fadeInLeft">
+                  <img alt="Alt" src="images/stage-2.png">
+                  <p>
+                    ESPERA LAS LLAMADAS DE NUESTROS OPERADORES PARA CONFIRMAR RESERVAS
+                  </p>
+                  <img alt="" class="arrow" src="images/arrow.png">
+                </div>
+                <div class="stage wow fadeInLeft">
+                  <img alt="Alt" src="images/stage-3.png">
+                  <p>
+                    TRABAJAMOS SIN PAGAR POR ADELANTADO! PAGUE SU PEDIDO SOLAMENTE CUANDO LO RECIBE
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <section class="block-01">
+        <div class="container">
+          <div class="row">
+            <div class="col xl6 l5 m12 s12">
+              <div class="block-01__subtitle ttu">
+                ES HORA
+              </div>
+              <div class="block-01__title ttu">
+                RESTAURAR SUS VISTAS!
+              </div>
+            </div>
+            <div class="col xl6 l7 m12 s12">
+              <div class="block-01__dashes dflex">
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.1s" data-wow-offset="200">
+                  <div class="dashes-item__text fwb ttu">
+                    SIN RECETAS DE 
+                    <span>MÉDICO PARA USO EN CASA</span>
+                  </div>
+                </div>
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.2s" data-wow-offset="200">
+                  <div class="dashes-item__text fwb ttu">
+                    100%
+                    <span>NATURAL MATERIALS</span>
+                  </div>
+                </div>
+                <div class="block-01__dashes-item wow bounceIn" data-wow-delay="1.3s" data-wow-offset="200">
+                  <div class="dashes-item__text fwb ttu">
+                    RECOMENDAR <span>POR EL CENTRO <br> CUIDADO DE LOS OJOS</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col xl4 l4 m12 s12">
+              <div class="img_box block-01__prod-image">
+                <img alt="" src="images/prod.png">
+              </div>
+            </div>
+            <div class="col xl4 l4 m6 s12">
+              <div class="block-01__prod-plus">
+                <div class="prod-pluses__title fwb">
+                  Aliviar la tensión y el dolor
+                </div>
+                <div class="prod-pluses__text">
+                  en los ojos en 5 minutos
+                </div>
+              </div>
+              <div class="block-01__prod-plus">
+                <div class="prod-pluses__title fwb">
+                  El recuperar el 99% de la visión en
+                </div>
+                <div class="prod-pluses__text">
+                  la serie del primer tratamiento
+                </div>
+              </div>
+              <div class="center-align block-01__prod-price wow fadeInRight" data-wow-delay="1.2s" data-wow-offset="100">
+                <div class="prod-price__old">
+                  <x-oldprice>268000</x-oldprice> <x-currency>COP</x-currency> 
+                </div>
+                <div class="prod-price__new">
+                  <x-newprice>129000</x-newprice> <x-currency>COP</x-currency> 
+                </div>
+              </div>
+            </div>
+            <div class="col xl4 l4 m6 s12">
+              <div class="percent-box ttu">
+                <div class="percent-box__title">
+                  SI HACE EL PEDIDO AHORA HAY UN DESCUENTO
+                </div>
+                <div class="percent-box__percent">
+                  EXTRAORDINARIO DEL 50%
+                </div>
+              </div>
+              <div class="form-box wow fadeInUp" data-wow-delay="1.1s" data-wow-offset="200">
+                <form action="https://healthbestblog.space/cpatl/api.php" class="main_form" id="order_form" method="POST">
+
+
+                  <div class="input-field input_item">
+                    <!-- не переводим -->
+                    <i class="material-icons prefix">account_circle</i>
+                     
+    <select name="offer" class="form-control country_chang" style="display: none;">
+        <option data-country-code="CO" selected="selected" value="18960">
+            Колумбия        </option>
+    </select>
+
+                        <div class="input-group tooltip-hide">
+                      <input id="icon_prefix" name="name" placeholder="" required type="text">
+                    </div>
+                    <label for="icon_prefix">Introduzca el nombre</label>
+                  </div>
+                  <div class="input-field input_item">
+                    <!-- не переводим -->
+                    <i class="material-icons prefix">phone</i>
+                    <!-- не переводим -->
+                    <div class="input-group tooltip-hide">
+                      <input id="icon_telephone" name="phone" placeholder="" required type="tel">
+                    </div>
+                    <label for="icon_telephone">Introduzca el numero</label>
+                  </div>
+
+                  <div class="center-align">
+                    <button class="js_submit button__text waves-effect waves-light btn blue custom_btn" type="submit">
+                      Order
+                    </button>
+                  </div>
+                       <input type="hidden" name="stream_hid" value="RnwTgbMx">
+      <input type="hidden" name="offer_id" value="4069">
+
+      
+      <input type="hidden" name="country" value="CO"> 
+
+      <input type="hidden" name="sid1" value="alex">
+      <input type="hidden" name="sid2" value="alex2">
+      <input type="hidden" name="sid3" value="alex3">
+      <input type="hidden" name="redirect_url" value="https://amazinghealth.github.io/germitox-ita/success/index.html">
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+  <center><p>OOO "OSTROV PRODAZH" OGRN: 1197746695530 VAT: 7708365555</p>
+<p>129090, Moscow, pereulok Zhivarev, house 8, stroenie 3, flat 16 email: ostrov.prodazh@mail.com Skype: ostrov.prodazh@mail.com</p> 
+
+
+    
+            <p class="conf-link doclinks">
+        <a class="nav-link" href="" onclick="window.open('/policy_en.php'); return false;">Privacy Policy</a>
+          |
+        <a class="nav-link" href="" onclick="window.open('/terms_en.php'); return false;">Terms & Conditions</a>
+      </p>
+      
+    
+</center>
+  <script src="js/materialize.min.js" type="text/javascript"></script>
+
+  <script src="js/lightslider.js" type="text/javascript"></script>
+  <script src="js/main.js" type="text/javascript"></script>
+
+  <script src="js/tooltips.js"></script>
+</body>
+</html>
